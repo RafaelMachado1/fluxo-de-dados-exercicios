@@ -10,7 +10,8 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
-`;
+`
+
 
 const Container = styled.div`
   display: flex;
@@ -18,21 +19,28 @@ const Container = styled.div`
   width: 100vw;
 `;
 
+
+
+
 function App() {
   const [pageFlow, setPageFlow] = useState(1);
+  const [login, setLogin] = useState({name: "", foto: "" });
+  const [cadastro, setCadastro] = useState("");
+
+  
   return (
     <>
       <GlobalStyle />
       <Container>
         <aside>
-          <Header />
+          <Header login={login} />
           {pageFlow === 1 ? (
-            <FormularioLogin setPageFlow={setPageFlow} />
+            <FormularioLogin setPageFlow={setPageFlow} setLogin={setLogin} />
           ) : (
-            <FormularioPostagem />
+            <FormularioPostagem setCadastro={setCadastro} />
           )}
         </aside>
-        <TelaDaPostagem />
+        <TelaDaPostagem cadastro={cadastro} />
       </Container>
     </>
   );
